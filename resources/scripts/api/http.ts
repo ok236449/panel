@@ -99,6 +99,10 @@ export interface PaginatedResult<T> {
     pagination: PaginationDataSet;
 }
 
+export interface VersionsResult<T> {
+    items: T[];
+}
+
 export interface PaginationDataSet {
     total: number;
     count: number;
