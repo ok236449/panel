@@ -55,7 +55,7 @@ console.log(dockerimage)
   const Install = () => {
     setVisible(false);
     setDisabled(true);
-    setPourcentage('Delete old versions...');
+    setPourcentage('Deleting old versions...');
     deleteFiles(uuid, '/', ['server.jar', 'zip.zip', 'libraries', 'fontfiles', 'worldshape', 'oresources', 'resources', 'structures', 'scripts', 'unix_args.txt', 'user_jvm_args.txt', 'config', 'mods'])
       .then(() => {
         InstallMinecraftVersion(
@@ -92,13 +92,13 @@ console.log(dockerimage)
                   } else {
                     clearInterval(Download);
                     if (filename.endsWith('tar.xz') || filename.endsWith('zip') || filename.endsWith('tar.gz')) {
-                      setPourcentage('Decompress files...');
+                      setPourcentage('Decompressing files...');
                       decompressFiles(uuid, '/', filename)
                         .then(() => {
-                          setPourcentage('Delete compressed file...');
+                          setPourcentage('Deleting compressed file...');
                           deleteFiles(uuid, '/', [filename])
                             .then(() => {
-                              setPourcentage('Change java version...');
+                              setPourcentage('Changing java version...');
                               setSelectedDockerImage(uuid, dockerimage).then(() => {
                                 addFlash({
                                   key: 'server:minecraftVersion',
@@ -136,7 +136,7 @@ console.log(dockerimage)
                       setPourcentage('Rename files...');
                       renameFiles(uuid, '/', [{ from: filename, to: 'server.jar' }])
                         .then(() => {
-                          setPourcentage('Change java version...');
+                          setPourcentage('Changing java version...');
                           setSelectedDockerImage(uuid, dockerimage)
                             .then(() => {
                               addFlash({
@@ -146,6 +146,7 @@ console.log(dockerimage)
                               });
                               setDisabled(false);
                               setTimeout(clear, 3000);
+			      window.location.reload();
                             })
                             .catch((err) => {
                               clearInterval(Download);

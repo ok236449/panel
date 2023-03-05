@@ -36,6 +36,9 @@ export default () => {
         clearFlashes();
     }, []);
 
+    if(ServerContext.useStoreState((state) => state.server.data!.eggId)!=15){
+	ServerContext.useStoreState((state) => state.server.data)!.mcversion = "";
+    }
     return (
         <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
             <Dialog.Confirm
@@ -55,12 +58,23 @@ export default () => {
                     Some files may be deleted or modified during this process, please back up your data before
                     continuing.
                 </strong>
+		{ServerContext.useStoreState((state) => state.server.data!.eggId)!=15?(<span><br/><br/><strong css={tw`font-medium`}>Note:&nbsp;</strong>Using this button will use the version value from startup tab and <strong css={tw`font-medium`}>ignore</strong> the version you may have set in the versions tab. If the version provided doesn't exist, the installation will fail.</span>):("")}
             </p>
-            <div css={tw`mt-6 text-right`}>
-                <Button.Danger variant={Button.Variants.Secondary} onClick={() => setModalVisible(true)}>
-                    Reinstall Server
-                </Button.Danger>
-            </div>
+	    {ServerContext.useStoreState((state) => state.server.data!.eggId)!=15?(<div css={tw`mt-6 border-l-4 border-cyan-500 p-3`}>
+                <p css={tw`font-medium`}>
+                    We strongly suggest you to (re)install your server by using the versions tab. That way, the install is guaranteed to work without any problems.
+                </p>
+            </div>):("")}
+	    {ServerContext.useStoreState((state) => state.server.data!.eggId)!=15?(
+                <div css={tw`mt-6 text-right`}>
+                    <Button.Danger variant={Button.Variants.Secondary} onClick={() => setModalVisible(true)}>
+                        Reinstall Server
+                    </Button.Danger>
+                </div>):(<div css={tw`mt-6 border-l-4 border-cyan-500 p-3`}>
+                    <p css={tw`font-medium`}>
+                         This server is running a custom version of Minecraft. To reinstall it, please use the versions tab and download the version of your choice.<br/>You may remove all files to get a complete fresh install.
+                    </p>
+                </div>)}
         </TitledGreyBox>
     );
 };

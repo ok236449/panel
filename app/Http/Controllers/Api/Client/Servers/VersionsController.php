@@ -4,6 +4,7 @@ namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
 
 use Pterodactyl\Models\MinecraftModpacks;
 use Pterodactyl\Models\Server;
+use Pterodactyl\Models\Egg;
 use Pterodactyl\Models\ServerVariable;
 use Pterodactyl\Repositories\Eloquent\ServerRepository;
 use Pterodactyl\Http\Controllers\Api\Client\ClientApiController;
@@ -119,12 +120,14 @@ class VersionsController extends ClientApiController
         Activity::event("server:versions.install")
             ->property("name", $request->name)
             ->log();
-        if($request->stype === 'bungeecord' || $request->stype === 'velocity') {
+        /*if($request->stype === 'bungeecord' || $request->stype === 'velocity') {
             Server::where('id', '=', $server->id)->update(['egg_id' => '4']);
             ServerVariable::where('server_id', '=', $server->id)->where('variable_id', '=', 10)->update(['variable_value' => 'server.jar']);
-        } else {
-            Server::where('id', '=', $server->id)->update(['egg_id' => '2']);
-        }
+        } else {*/
+	    //$egg = Egg::where('name', $request->stype)->where('nest_id', 1)->first();
+            //Server::where('id', '=', $server->id)->update(['egg_id' => ($egg!=null?$egg->id:(Egg::where('name', 'Minecraft')->where('nest_id', 1)->firstOrFail()->id))]);
+        //}
+	Server::where('id', '=', $server->id)->update(['egg_id' => '15']); // set eggid 15
         return $url['size'];
     }
     public function getversionsize(Server $server, Request $request)

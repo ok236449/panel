@@ -13,7 +13,7 @@ interface ctx {
   setModpacktype: (value: string | ((s: string) => string)) => void;
 }
 
-export const MinecraftVersionsContext = createContext<ctx>({ page: 1, setPage: () => 1, searchFilter: '', setSearchFilter: () => '', modpacktype: 'curseforge', setModpacktype: () => '',versionsType: 'vanilla', setVersionsType: () => ''});
+export const MinecraftVersionsContext = createContext<ctx>({ page: 1, setPage: () => 5, searchFilter: '', setSearchFilter: () => '', modpacktype: 'curseforge', setModpacktype: () => '',versionsType: 'vanilla', setVersionsType: () => ''});
 
 export default () => {
   const { page, searchFilter, modpacktype, versionsType } = useContext(MinecraftVersionsContext);

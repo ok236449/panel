@@ -130,7 +130,7 @@ export default {
         {
             path: '/versions',
             permission: 'file.*',
-            name: 'Version',
+            name: 'Versions',
             nestId: 1,
             component: McVersionsContainer,
           },

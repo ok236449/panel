@@ -24,53 +24,32 @@ const VersionSelect = () => {
       onChange={(e) => { console.log(e.target.value); setVersionsType(e.target.value); setPage(1); } }
       defaultValue={versionsType}
     >
-        <option key={1} value={'vanilla'}>
-          Vanilla
-        </option>
-        <option key={2} value={'snapshot'}>
-          Snapshot
-        </option>
-        <option key={3} value={'spigot'}>
+        <option key={1} value={'spigot'}>
           Spigot
         </option>
-        <option key={4} value={'paper'}>
+        <option key={2} value={'paper'}>
           Paper
         </option>
-        <option key={5} value={'purpur'}>
+        <option key={3} value={'purpur'}>
           Purpur
         </option>
-        <option key={6} value={'sponge'}>
-          Sponge
-        </option>
-        <option key={7} value={'bungeecord'}>
+        <option key={4} value={'bungeecord'}>
           Bungeecord
         </option>
-        <option key={8} value={'waterfall'}>
+	<option key={5} value={'waterfall'}>
           Waterfall
         </option>
-        <option key={9} value={'velocity'}>
-          Velocity
-        </option>
-        <option key={10} value={'forge'}>
+	<option key={6} value={'forge'}>
           Forge
         </option>
-        <option key={11} value={'fabric'}>
+        <option key={7} value={'fabric'}>
           Fabric
         </option>
-        <option key={12} value={'mohist'}>
-          Mohist
-        </option>
-        <option key={13} value={'magma'}>
-          Magma
-        </option>
-        <option key={14} value={'catserver'}>
-          Catserver
-        </option>
-        <option key={15} value={'modpacks'}>
+        <option key={8} value={'modpacks'}>
           Modpacks
         </option>
         {custom && (
-          <option key={16} value={'others'}>
+          <option key={9} value={'others'}>
             Others
           </option>
         )}
@@ -87,9 +66,6 @@ const VersionSelect = () => {
           </option>
           <option key={2} value={'technic'}>
             Technic Platform
-          </option>
-          <option key={3} value={'others'}>
-            Others
           </option>
         </Select>
       </div></>
@@ -155,9 +131,9 @@ const McVersionsVanillaContainer = () => {
 };
 
 export default () => {
-  const [ page, setPage ] = useState<number>(1);
+  const [ page, setPage ] = useState<number>(5);
   const [ searchFilter, setSearchFilter ] = useState<string>('');
-  const [ versionsType, setVersionsType ] = useState<string>('vanilla');
+  const [ versionsType, setVersionsType ] = useState<string>('purpur');
   const [ modpacktype, setModpacktype ] = useState<string>('curseforge');
 
   return (
